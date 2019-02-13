@@ -1,0 +1,13 @@
+- hosts: k8s-cluster02
+  vars:
+    ImageNameDev: ""
+    ImageNameTrn: ""
+    Namespace: ""
+    imageTag: ""
+  tasks:
+  - name: Delete Deployed Before
+    command: "helm delete --purge mavendocker-dev-java"
+    ignore_errors: yes
+  - name: Deploy Apps Maven Docker
+    command: "helm install --name=mavendocker-{{ Namespace }}  --namespace={{ Namespace }} ./helm/dockermaven --set image.repository={{ ImageNameTrn }} --set image.tag={{ imageTag }} --set namespace={{ Namespace }}"
+    ignore_errors: yes

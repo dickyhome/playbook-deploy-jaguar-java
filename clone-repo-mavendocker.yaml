@@ -1,0 +1,16 @@
+- hosts: k8s-all
+  vars:
+    chartName: "dockermaven"
+  tasks:
+  - name: Create directory mavendocker
+    file:
+      path: /root/helm/{{ chartName }}
+      state: directory
+  
+  - name: Clone Repo Helm Chart Dockermaven
+    git:
+      repo: git@git.i3datacenter.com:alan/helm-mavendocker.git
+      version: master
+      dest: /root/helm/{{ chartName }}
+      accept_hostkey: yes
+    become: no
