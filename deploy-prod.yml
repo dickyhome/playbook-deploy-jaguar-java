@@ -1,0 +1,13 @@
+- hosts: k8s-cluster01
+  vars:
+    ImageNameDev: ""
+    ImageNameProd: ""
+    Namespace: ""
+    imageTag: ""
+  tasks:
+  - name: Delete Deployed Before
+    command: "helm delete --purge jaguar-apps-production"
+    ignore_errors: yes
+  - name: Deploy Apps Jaguar Apps Production
+    command: "helm install --name=jaguar-apps-{{ Namespace }}  --namespace={{ Namespace }} ./helm/jaguar-apps --set image.repository={{ ImageNameProd }} --set image.tag={{ imageTag }} --set namespace={{ Namespace }}"
+    ignore_errors: yes

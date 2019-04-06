@@ -1,13 +1,13 @@
 - hosts: k8s-cluster01
   vars:
     ImageNameDev: ""
-    ImageNameTrn: ""
+    ImageNameProd: ""
     Namespace: ""
     imageTag: ""
   tasks:
   - name: Delete Deployed Before
-    command: "helm delete --purge mavendocker-dev-java"
+    command: "helm delete --purge jaguar-apps-development"
     ignore_errors: yes
-  - name: Deploy Apps Maven Docker
-    command: "helm install --name=mavendocker-{{ Namespace }}  --namespace={{ Namespace }} ./helm/dockermaven --set image.repository={{ ImageNameDev }} --set image.tag={{ imageTag }} --set namespace={{ Namespace }}"
+  - name: Deploy Apps Jaguar Apps Dev
+    command: "helm install --name=jaguar-apps-{{ Namespace }}  --namespace={{ Namespace }} ./helm/jaguar-apps --set image.repository={{ ImageNameDev }} --set image.tag={{ imageTag }} --set namespace={{ Namespace }}"
     ignore_errors: yes

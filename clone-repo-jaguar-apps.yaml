@@ -1,15 +1,15 @@
-- hosts: k8s-all
+- hosts: k8s-cluster01
   vars:
-    chartName: "dockermaven"
+    chartName: "jaguar-apps"
   tasks:
-  - name: Create directory mavendocker
+  - name: Create directory jaguar-apps
     file:
       path: /root/helm/{{ chartName }}
       state: directory
   
-  - name: Clone Repo Helm Chart Dockermaven
+  - name: Clone Repo Helm Chart Jaguar Apps
     git:
-      repo: git@git.i3datacenter.com:alan/helm-mavendocker.git
+      repo: 192.168.1.104:jaguar/helm-jaguar-apps.git
       version: master
       dest: /root/helm/{{ chartName }}
       accept_hostkey: yes
