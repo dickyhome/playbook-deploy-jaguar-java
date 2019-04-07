@@ -9,7 +9,7 @@
   
   - name: Clone Repo Helm Chart Jaguar Apps
     git:
-      repo: git@192.168.1.104:jaguar/helm-jaguar-apps.git
+      repo: git@192.168.1.103:jaguar/helm-jaguar-apps.git
       version: master
       dest: /root/helm/{{ chartName }}
       accept_hostkey: yes
